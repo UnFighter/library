@@ -1,0 +1,17 @@
+.footer {
+    margin-top: 50px;
+    padding: 20px 80px;
+    color: #fff;
+    font-size: 14px;
+    background-color: #383838;
+    line-height: 50px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+.footer_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
