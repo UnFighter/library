@@ -12,6 +12,7 @@
                     <label for="exampleFormControlInput1" class="form-label">Description</label>
                     <input type="text" name="description" class="form-control" id="description" placeholder="Description">
                 </div>
+
                 <div class="form-group">
                     <label for="author">Authors</label>
                     <select multiple class="form-control" id="author" name="authors[]">
@@ -20,6 +21,12 @@
                         @endforeach
                     </select>
                 </div>
+
+{{--                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Authors</label>
+                    <input type="text" name="authors" class="form-control" id="authors" placeholder="Authors">
+                </div>--}}
+
                 <div class="mb-3">
                     <button type="submit" class="btn btn-primary">Create</button>
                 </div>
