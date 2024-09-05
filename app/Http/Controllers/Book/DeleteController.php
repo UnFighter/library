@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Book;
 
-use App\Http\Controllers\Controller;
 use App\Models\Book;
 
 class DeleteController extends BaseController

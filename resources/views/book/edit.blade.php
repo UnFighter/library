@@ -22,6 +22,11 @@
                     </select>
                 </div>
                 <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Amount</label>
+                    <input type="text" name="amount" class="form-control" id="amount" placeholder="Amount" value="{{$book->amount}}">
+                </div>
+
+                <div class="mb-3">
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </div>

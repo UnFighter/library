@@ -32,7 +32,10 @@
                     <a href="{{route('book.index')}}" class="nav-link">Book</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('create.index')}}" class="nav-link">Create</a>
+                    <a href="{{route('book.create')}}" class="nav-link">Create</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('user.index')}}" class="nav-link">Users</a>
                 </li>
             </ul>
         </div>

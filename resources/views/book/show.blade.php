@@ -12,7 +12,7 @@
 
         <div class="container-fluid">
             <div class="m-3 p-1">
-                <h1 style="font-size: 26px">Описание книги</h1>
+                <h1 style="font-size: 28px">Описание книги</h1>
                 <div>
                     <div> {{$book->description}}</div>
                 </div>
@@ -21,12 +21,21 @@
 
         <div class="container-fluid">
             <div class="m-3 p-1">
-                <h2 style="font-size: 26px">Автор книги</h2>
+                <h2 style="font-size: 28px">Автор книги</h2>
                 <div>
                     @foreach($book->authors as $author)
                         {{ $author->name }}@if (!$loop->last)
                         @endif
                     @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="m-3 p-1">
+                <h1 style="font-size: 28px">Количество книг</h1>
+                <div>
+                    <div> {{$book->amount}}</div>
                 </div>
             </div>
         </div>
