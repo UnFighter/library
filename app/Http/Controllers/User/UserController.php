@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index(): Factory|View|Application
     {
         $users = User::paginate($this->perPage);
-        return view('user.user', compact('users'));
+        return view('user.index', compact('users'));
     }
 
     public function search(Request $request): Factory|View|Application
@@ -30,7 +30,7 @@ class UserController extends Controller
             $users = collect();
         }
 
-        return view('user.user', compact('users'));
+        return view('user.index', compact('users'));
     }
 
 }
