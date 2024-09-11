@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Pages;
+namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 
-class ContactController
+class AboutController
 {
     public function index(): Factory|View|Application
     {
-        return view('pages.contacts');
+        return view('pages.about');
     }
 }

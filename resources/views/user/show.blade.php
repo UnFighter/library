@@ -61,7 +61,10 @@
 
             <div>
                 <h1 style="font-size: 28px">Выдать книгу</h1>
-                @include('user.book-search-bar')
+                <form action="{{ route('user.book-search', ['user' => $user->id]) }}" method="GET" class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Поиск" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+                </form>
                 <div>
                     @if(isset($search) && !empty($search))
                         <h2 style="font-size: 28px">Результаты поиска для: "{{ $search }}"</h2>
