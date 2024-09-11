@@ -12,6 +12,7 @@ use App\Http\Controllers\Book\StoreController;
 use App\Http\Controllers\Book\UpdateController;
 use App\Http\Controllers\Pages\AboutController;
 use App\Http\Controllers\Pages\ContactController;
+use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\MainController;
 use App\Http\Controllers\User\DestroyUserController;
 use App\Http\Controllers\User\UserController;
@@ -43,8 +44,8 @@ Route::group(['namespace' => 'App\Http\Controllers\User'], function (){
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\BookUser'], function (){
-    Route::delete('/user/{user}/book/{book}', [DestroyRelationController::class, 'destroyConnection'])->name('user.destroyConnection');
-    Route::post('/user/{user}/book/{book}/create', [CreateRelationController::class, 'createConnection'])->name('user.createConnection');
+    Route::delete('/user/{user}/book/{book}', [DestroyRelationController::class, 'destroyBookUserConnection'])->name('user.destroyConnection');
+    Route::post('/user/{user}/book/{book}/create', [CreateRelationController::class, 'createBookUserConnection'])->name('user.createConnection');
 });
 
 // Маршруты сайта
@@ -54,4 +55,4 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 
 Auth::routes();
-Route::get('/home', [\App\Http\Controllers\Pages\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

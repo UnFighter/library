@@ -11,9 +11,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    protected $perPage = 10;
     public function index(): Factory|View|Application
     {
-        $users = User::paginate(10);
+        $users = User::paginate($this->perPage);
         return view('user.user', compact('users'));
     }
 
@@ -22,9 +23,9 @@ class UserController extends Controller
         $search = $request->input('search');
 
         if ($search) {
-            $users = User::where('name', 'LIKE', "%{$search}%")
-                ->orWhere('email', 'LIKE', "%{$search}%")
-                ->get();
+            $users = User::where('name', 'LIKE', "%$search%")
+                ->orWhere('email', 'LIKE', "%$search%")
+                ->paginate($this->perPage);
         } else {
             $users = collect();
         }
