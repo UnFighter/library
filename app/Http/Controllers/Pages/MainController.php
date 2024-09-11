@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pages;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -10,6 +10,6 @@ class MainController
 {
     public function index(): Factory|View|Application
     {
-        return view('main');
+        return view('pages.main');
     }
 }

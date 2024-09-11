@@ -12,41 +12,40 @@
 </head>
 
 <body style="height: 900px;">
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a href="{{route('main.index')}}" class="navbar-brand">Telecom Library</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarContent"
-                aria-controls="navbarContent" aria-expanded="false">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a href="{{route('main.index')}}" class="navbar-brand">Telecom Library</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="{{route('about.index')}}" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('contact.index')}}" class="nav-link">Contacts</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('book.index')}}" class="nav-link">Book</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('book.create')}}" class="nav-link">Create</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('user.index')}}" class="nav-link">Users</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{route('about.index')}}" class="nav-link">О компании</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('contact.index')}}" class="nav-link">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('book.index')}}" class="nav-link">Библиотека</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('book.create')}}" class="nav-link">Создать книгу</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('user.index')}}" class="nav-link">Пользователи</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<nav>
-    <div class="container" style="margin-top: 100px;">
-        @yield('title')
-    </div>
-</nav>
-
+    <nav>
+        <div class="container" style="margin-top: 100px;">
+            @yield('title')
+        </div>
+    </nav>
 </body>
 </html>

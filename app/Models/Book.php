@@ -19,9 +19,5 @@ class Book extends Model
     {
         return $this->belongsToMany(User::class);
     }
-    public function book(): BelongsToMany
-    {
-        return $this->belongsToMany(Book::class);
-    }
 }
 

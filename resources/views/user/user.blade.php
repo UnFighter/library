@@ -4,18 +4,13 @@
         <h1>Список пользователей</h1>
     </div>
 
-    <nav class="navbar navbar-light">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
+    @include('user.search-bar')
 
     <div class="table">
         <table>
             <thead>
             <tr>
-                <th scope="col">id</th>
+                <th scope="col">Id</th>
                 <th scope="col">Имя</th>
                 <th scope="col">Почта</th>
             </tr>

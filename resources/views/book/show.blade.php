@@ -43,10 +43,10 @@
         <div>
             <div class="m-5">
                 <div>
-                    <a href="{{route('book.edit', $book->id)}}">Edit</a>
+                    <a href="{{route('book.edit', $book->id)}}">Ред.</a>
                 </div>
                 <div style="margin-top: 20px">
-                    <a href="{{route('book.index')}}">Back</a>
+                    <a href="{{route('book.index')}}">Назад</a>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                 <form action="{{route('book.destroy', $book->id)}}" method="post">
                     @csrf
                     @method('delete')
-                    <input type="submit" value="Delete" class="btn btn-danger">
+                    <input type="submit" value="Удалить" class="btn btn-danger">
                 </form>
             </div>
         </div>
