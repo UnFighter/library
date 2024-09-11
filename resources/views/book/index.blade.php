@@ -8,7 +8,6 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
         </form>
 
-
         <div class="table">
             <table>
                 <thead>
@@ -33,6 +32,7 @@
                 </tbody>
             </table>
         </div>
+
         <div class="pagination">
             {{ $books->links() }} <!-- Отображение ссылок для пагинации -->
         </div>

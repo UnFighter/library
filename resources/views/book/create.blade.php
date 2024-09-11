@@ -8,6 +8,7 @@
                     <label for="exampleFormControlInput1" class="form-label">Название книги</label>
                     <label for="title"></label><input type="text" name="title" class="form-control" id="title" placeholder="Title">
                 </div>
+
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Описание</label>
                     <label for="description"></label><input type="text" name="description" class="form-control" id="description" placeholder="Description">

@@ -6,6 +6,7 @@ use App\Http\Requests\Book\StoreRequest;
 use App\Http\Requests\Book\UpdateRequest;
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\User;
 use App\Services\Book\Service;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -34,12 +35,6 @@ class BookController extends Controller
     {
         $authors = Author::all();
         return view('book.create', compact('book', 'authors'));
-    }
-
-    public function delete()
-    {
-        $book = Book::find(1);
-        $book->delete();
     }
 
     public function destroy(Book $book): RedirectResponse
@@ -78,7 +73,7 @@ class BookController extends Controller
         return redirect()->route('book.index', $book->id);
     }
 
-    public function search(Request $request): Factory|View|Application
+    public function searchBook(Request $request): Factory|View|Application
     {
         $search = $request->input('search');
         if ($search) {
@@ -90,7 +85,21 @@ class BookController extends Controller
         } else {
             $books = collect();
         }
-
         return view('book.index', compact('books'));
+    }
+    public function searchBookForUser(Request $request, User $user): Factory|View|Application
+    {
+        $search = $request->input('search');
+        $user->load('books');
+        if ($search) {
+            $books = Book::where('title', 'LIKE', "%$search%")
+                ->orWhereHas('authors', function ($query) use ($search) {
+                    $query->where('name', 'LIKE', "%$search%");
+                })
+                ->get();
+        } else {
+            $books = collect();
+        }
+        return view('user.show', compact('user', 'books', 'search'));
     }
 }

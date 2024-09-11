@@ -37,6 +37,9 @@
                     <li class="nav-item">
                         <a href="{{route('user.index')}}" class="nav-link">Пользователи</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('user.create')}}" class="nav-link">Создать пользователя</a>
+                    </li>
                 </ul>
             </div>
         </div>

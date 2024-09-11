@@ -1,6 +1,15 @@
 @extends('layouts.main')
 @section('title')
     <div class="container-fluid">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="m-3 p-1">
             <h1 style="font-size: 28px">Имя пользователя</h1>
             <div>
@@ -14,14 +23,9 @@
                 <div>{{$user->email}}</div>
             </div>
         </div>
-
-        <div class="m-3 p-1">
-            <h1 style="font-size: 28px">Электронная почта</h1>
-            <div>
-                <div>{{$user->email}}</div>
-            </div>
+        <div>
+            <a href="{{route('user.edit', $user->id)}}">Редактировать</a>
         </div>
-
         <div class="m-3 p-1">
             <h2 style="font-size: 28px">Книги пользователя</h2>
             <div class="table">

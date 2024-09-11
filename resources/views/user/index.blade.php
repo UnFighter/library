@@ -1,5 +1,14 @@
 @extends('layouts.main')
 @section('title')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div>
         <h1>Список пользователей</h1>
     </div>
@@ -8,7 +17,6 @@
         <input class="form-control mr-sm-2" type="search" name="search" placeholder="Поиск" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
     </form>
-
     <div class="table">
         <table>
             <thead>
