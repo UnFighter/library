@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    protected $perPage = 10;
+    protected int $perPage = 10;
     public function index(): Factory|View|Application
     {
         $users = User::paginate($this->perPage);

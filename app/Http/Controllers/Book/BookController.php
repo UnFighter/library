@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    protected $perPage = 10; // Пагинация
+    protected int $perPage = 10; // Пагинация
     public function index(): Factory|View|Application
     {
         $books = Book::paginate($this->perPage);
