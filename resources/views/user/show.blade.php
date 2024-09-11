@@ -71,6 +71,7 @@
                                     <th>Id</th>
                                     <th>Название</th>
                                     <th>Авторы</th>
+                                    <th>Количество</th>
                                     <th>Выдача</th>
                                 </tr>
                                 </thead>
@@ -85,6 +86,7 @@
                                                     {{ $author->name }}{{ !$loop->last ? ', ' : '' }}
                                                 @endforeach
                                             </td>
+                                            <td>{{$book->amount}}</td>
                                             <td>
                                                 <div class="m4">
                                                     <form action="{{ route('user.createConnection', ['user' => $user->id, 'book' => $book->id]) }}" method="post">

@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 
 class DestroyRelationController extends Controller
 {
-    public function destroyConnection(User $user, Book $book): RedirectResponse
+    public function destroyBookUserConnection(User $user, Book $book): RedirectResponse
     {
         $user->books()->detach($book);
         $book->increment('amount', 1);

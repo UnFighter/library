@@ -29,6 +29,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="pagination">
+            {{ $books->links() }} <!-- Отображение ссылок для пагинации -->
+        </div>
     </div>
 @endsection
 

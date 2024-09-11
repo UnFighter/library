@@ -25,6 +25,9 @@
             @endforeach
             </tbody>
         </table>
+        <div class="pagination">
+            {{ $users->links() }} <!-- Отображение ссылок для пагинации -->
+        </div>
     </div>
 
 @endsection

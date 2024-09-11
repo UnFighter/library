@@ -26,9 +26,9 @@ class ShowController extends Controller
         $user->load('books');
 
         if ($search) {
-            $books = Book::where('title', 'LIKE', "%{$search}%")
+            $books = Book::where('title', 'LIKE', "%$search%")
                 ->orWhereHas('authors', function ($query) use ($search) {
-                    $query->where('name', 'LIKE', "%{$search}%");
+                    $query->where('name', 'LIKE', "%$search%");
                 })
 
                 ->get();
