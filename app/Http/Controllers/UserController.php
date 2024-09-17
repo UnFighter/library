@@ -78,7 +78,6 @@ class UserController extends Controller
         } else {
             $users = collect();
         }
-
         return view('user.index', compact('users'));
     }
 }

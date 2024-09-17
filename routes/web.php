@@ -21,10 +21,10 @@ Route::delete('/library/{book}', [BookController::class, 'destroy'])->name('book
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
+Route::get('/user/search', [UserController::class, 'searchUser'])->name('user.search');
 Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
 Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::patch('/user/{user}', [UserController::class, 'update'])->name('user.update');
-Route::get('/user/search', [UserController::class, 'searchUser'])->name('user.search');
 Route::get('/user/{user}/search', [BookController::class, 'searchBookForUser'])->name('user.book-search');
 Route::delete('/user/{user}', [UserController::class, 'destroyUser'])->name('user.destroy');
 
