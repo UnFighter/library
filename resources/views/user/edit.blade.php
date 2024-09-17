@@ -16,12 +16,14 @@
             <div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Имя пользователя</label>
-                    <label for="title"></label><input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{$user->name}}">
+                    <label for="title"></label><input type="text" name="name" class="form-control" id="name"
+                                                      placeholder="Name" value="{{$user->name}}">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Электронная почта</label>
-                    <label for="description"></label><input type="text" name="email" class="form-control" id="email" placeholder="Email" value="{{$user->email}}">
+                    <label for="description"></label><input type="text" name="email" class="form-control" id="email"
+                                                            placeholder="Email" value="{{$user->email}}">
                 </div>
 
                 <div class="mb-3">

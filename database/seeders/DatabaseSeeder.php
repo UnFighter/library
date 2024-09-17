@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             $authorsId = $authors->random(1)->pluck('id');
             $book->authors()->attach($authorsId);
         }
-        foreach ($users as $user){
+        foreach ($users as $user) {
             $booksId = $books->random(3)->pluck('id');
             $user->books()->attach($booksId);
         }

@@ -87,6 +87,7 @@ class BookController extends Controller
         }
         return view('book.index', compact('books'));
     }
+
     public function searchBookForUser(Request $request, User $user): Factory|View|Application
     {
         $search = $request->input('search');

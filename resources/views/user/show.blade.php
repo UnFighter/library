@@ -45,12 +45,16 @@
                             <td>{{ $book->title }}</td>
                             <td>
                                 @foreach($book->authors as $author)
-                                    {{ $author->name }}@if (!$loop->last), @endif
+                                    {{ $author->name }}@if (!$loop->last)
+                                        ,
+                                    @endif
                                 @endforeach
                             </td>
                             <td>
                                 <div class="m4">
-                                    <form action="{{ route('user.destroyConnection', ['user' => $user->id, 'book' => $book->id]) }}" method="post">
+                                    <form
+                                        action="{{ route('user.destroyConnection', ['user' => $user->id, 'book' => $book->id]) }}"
+                                        method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-warning">Списать</button>
@@ -66,52 +70,55 @@
             <div>
                 <h1 style="font-size: 28px">Выдать книгу</h1>
                 <form action="{{ route('user.book-search', ['user' => $user->id]) }}" method="GET" class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Поиск" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Поиск"
+                           aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
                 </form>
                 <div>
                     @if(isset($search) && !empty($search))
                         <h2 style="font-size: 28px">Результаты поиска для: "{{ $search }}"</h2>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Название</th>
-                                    <th>Авторы</th>
-                                    <th>Количество</th>
-                                    <th>Выдача</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @unless($books->isEmpty())
-                                    @foreach($books as $book)
-                                        <tr>
-                                            <td>{{ $book->id }}</td>
-                                            <td><a href="{{ route('book.show', $book->id) }}">{{ $book->title }}</a></td>
-                                            <td>
-                                                @foreach($book->authors as $author)
-                                                    {{ $author->name }}{{ !$loop->last ? ', ' : '' }}
-                                                @endforeach
-                                            </td>
-                                            <td>{{$book->amount}}</td>
-                                            <td>
-                                                <div class="m4">
-                                                    <form action="{{ route('user.createConnection', ['user' => $user->id, 'book' => $book->id]) }}" method="post">
-                                                        @csrf
-                                                        @method('POST')
-                                                        <button type="submit" class="btn btn-success">Добавить</button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @else
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Название</th>
+                                <th>Авторы</th>
+                                <th>Количество</th>
+                                <th>Выдача</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @unless($books->isEmpty())
+                                @foreach($books as $book)
                                     <tr>
-                                        <td colspan="3">Ничего не найдено</td>
+                                        <td>{{ $book->id }}</td>
+                                        <td><a href="{{ route('book.show', $book->id) }}">{{ $book->title }}</a></td>
+                                        <td>
+                                            @foreach($book->authors as $author)
+                                                {{ $author->name }}{{ !$loop->last ? ', ' : '' }}
+                                            @endforeach
+                                        </td>
+                                        <td>{{$book->amount}}</td>
+                                        <td>
+                                            <div class="m4">
+                                                <form
+                                                    action="{{ route('user.createConnection', ['user' => $user->id, 'book' => $book->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('POST')
+                                                    <button type="submit" class="btn btn-success">Добавить</button>
+                                                </form>
+                                            </div>
+                                        </td>
                                     </tr>
-                                @endunless
-                                </tbody>
-                            </table>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="3">Ничего не найдено</td>
+                                </tr>
+                            @endunless
+                            </tbody>
+                        </table>
                     @else
                         <p>Введите запрос для поиска книг.</p>
                     @endif
@@ -120,7 +127,8 @@
 
 
             <div class="m-4">
-                <form action="{{route('user.destroy', $user->id)}}" method="post" onsubmit="return confirm('Вы уверены, что хотите удалить этого пользователя?');">
+                <form action="{{route('user.destroy', $user->id)}}" method="post"
+                      onsubmit="return confirm('Вы уверены, что хотите удалить этого пользователя?');">
                     @csrf
                     @method('delete')
                     <input type="submit" value="Удалить пользователя" class="btn btn-danger">

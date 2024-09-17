@@ -10,12 +10,12 @@ class BookUserRelationController
 {
     public function createBookUserConnection(User $user, Book $book): RedirectResponse
     {
-//        $currentAmount = $book->amount;
+        $currentAmount = $book->amount;
         $currentBookId = $book->id;
-        if ($book->exists) {
+        if ($currentAmount <= 0) {
            return redirect()->back()->withErrors(['amount' => 'Недостаточно книг']);
         }
-        if ($user->books()->where('book_id', $currentBookId)->exists()) {
+        elseif ($user->books()->where('book_id', $currentBookId)->exists()) {
             return redirect()->back()->withErrors(['amount' => 'У пользователя уже есть такая книга']);
         }
         $user->books()->attach($book);

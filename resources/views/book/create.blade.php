@@ -6,12 +6,14 @@
             <div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Название книги</label>
-                    <label for="title"></label><input type="text" name="title" class="form-control" id="title" placeholder="Title">
+                    <label for="title"></label><input type="text" name="title" class="form-control" id="title"
+                                                      placeholder="Title">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Описание</label>
-                    <label for="description"></label><input type="text" name="description" class="form-control" id="description" placeholder="Description">
+                    <label for="description"></label><input type="text" name="description" class="form-control"
+                                                            id="description" placeholder="Description">
                 </div>
 
                 <div class="form-group">
@@ -25,7 +27,8 @@
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Количество</label>
-                    <label for="amount"></label><input type="text" name="amount" class="form-control" id="amount" placeholder="Amount" value="{{$book->amount}}">
+                    <label for="amount"></label><input type="text" name="amount" class="form-control" id="amount"
+                                                       placeholder="Amount" value="{{$book->amount}}">
                 </div>
 
                 <div class="mb-3">
