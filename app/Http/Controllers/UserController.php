@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\UpdateRequest;
 use App\Http\Requests\User\StoreRequest;
+use App\Models\Book;
 use App\Models\User;
-use App\Services\User\Service;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -14,17 +14,20 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    protected Service $service;
     protected int $perPage = 10;
 
-    public function __construct(Service $service)
+    public function index(Request $request): Factory|View|Application
     {
-        $this->service = $service; // Инициализация свойства в конструкторе
-    }
+        $search = $request->input('search');
 
-    public function index(): Factory|View|Application
-    {
-        $users = User::paginate($this->perPage);
+        if ($search) {
+            $users = User::where('name', 'LIKE', "%$search%")
+                ->orWhere('email', 'LIKE', "%$search%")
+                ->paginate($this->perPage);
+        } else {
+            $users = User::paginate($this->perPage);
+        }
+
         return view('user.index', compact('users'));
     }
 
@@ -33,17 +36,29 @@ class UserController extends Controller
         return view('user.edit', compact('user'));
     }
 
-    public function show(User $user): Factory|View|Application
+    public function show(Request $request, User $user): Factory|View|Application
     {
         $user->load('books');
-        return view('user.show', compact('user'));
+
+        $search = $request->input('search');
+        $user->load('books');
+        if ($search) {
+            $books = Book::where('title', 'LIKE', "%$search%")
+                ->orWhereHas('authors', function ($query) use ($search) {
+                    $query->where('name', 'LIKE', "%$search%");
+                })
+                ->get();
+        } else {
+            $books = collect();
+        }
+        return view('user.show', compact('user','books', 'search'));
     }
 
     public function store(StoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
-        $this->service->store($data);
+        User::query()->create($data);
 
         return redirect()->route('user.index');
     }
@@ -56,7 +71,7 @@ class UserController extends Controller
     public function update(UpdateRequest $request, User $user): RedirectResponse
     {
         $data = $request->validated();
-        $this->service->update($user, $data);
+        $user->update($data);
         return redirect()->route('user.index');
     }
 
@@ -65,19 +80,5 @@ class UserController extends Controller
         $user->books()->detach();
         $user->delete();
         return redirect()->route('user.index');
-    }
-
-    public function searchUser(Request $request): Factory|View|Application
-    {
-        $search = $request->input('search');
-
-        if ($search) {
-            $users = User::where('name', 'LIKE', "%$search%")
-                ->orWhere('email', 'LIKE', "%$search%")
-                ->paginate($this->perPage);
-        } else {
-            $users = collect();
-        }
-        return view('user.index', compact('users'));
     }
 }

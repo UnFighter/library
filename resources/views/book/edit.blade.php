@@ -1,13 +1,18 @@
 @extends('layouts.main')
 @section('title')
     <div class="container">
-        @if ($errors->any())
+{{--        @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
+            </div>
+        @endif--}}
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
         @endif
         <form action="{{route('book.update', $book->id)}}" method="post">
@@ -18,6 +23,9 @@
                     <label for="exampleFormControlInput1" class="form-label">Название книги</label>
                     <label for="title"></label><input type="text" name="title" class="form-control" id="title"
                                                       placeholder="Title" value="{{$book->title}}">
+                    @error('title')
+                    <div class="alert alert-danger">{{ "Поле не должно быть пустым" }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Описание</label>
@@ -32,6 +40,9 @@
                             <option value="{{$author->id}}">{{$author->name}}</option>
                         @endforeach
                     </select>
+                    @error('author')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Количество</label>
