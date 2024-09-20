@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\UpdateRequest;
-use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\Book;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -54,13 +55,17 @@ class UserController extends Controller
         return view('user.show', compact('user','books', 'search'));
     }
 
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(UserStoreRequest $request): RedirectResponse
     {
-        $data = $request->validated();
-
-        User::query()->create($data);
-
-        return redirect()->route('user.index');
+        try{
+            $data = $request->validated();
+            User::query()->create($data);
+            return redirect()->route('user.index');
+        }
+        catch (\Exception $e) {
+            Log::error('Ошибка при добавлении пользователя: ' . $e->getMessage());
+            return back()->with(['error' => 'Не удалось добавить пользователя. Попробуйте снова.']);
+        }
     }
 
     public function create(User $user): Factory|View|Application
@@ -68,11 +73,17 @@ class UserController extends Controller
         return view('user.create', compact('user'));
     }
 
-    public function update(UpdateRequest $request, User $user): RedirectResponse
+    public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
-        $data = $request->validated();
-        $user->update($data);
-        return redirect()->route('user.index');
+        try{
+            $data = $request->validated();
+            $user->update($data);
+            return redirect()->route('user.index');
+        }
+        catch (\Exception $e) {
+        Log::error('Ошибка при обновлении пользователя: ' . $e->getMessage());
+        return back()->with(['error' => 'Не удалось обновить пользователя. Попробуйте снова.']);
+        }
     }
 
     public function destroyUser(User $user): RedirectResponse

@@ -21,13 +21,17 @@
             <div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Имя пользователя</label>
-                    <label for="title"></label><input type="text" name="name" class="form-control" id="name"
+                    <label for="name"></label><input type="text" name="name" class="form-control" id="name"
                                                       placeholder="Name" value="{{$user->name}}">
+
+                    @error('name')
+                    <div class="alert alert-danger">{{ "Поле не должно быть пустым" }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Электронная почта</label>
-                    <label for="description"></label><input type="text" name="email" class="form-control" id="email"
+                    <label for="email"></label><input type="text" name="email" class="form-control" id="email"
                                                             placeholder="Email" value="{{$user->email}}">
                 </div>
 

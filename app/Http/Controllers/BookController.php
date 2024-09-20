@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Book\StoreRequest;
-use App\Http\Requests\Book\UpdateRequest;
+use App\Http\Requests\BookStoreRequest;
+use App\Http\Requests\BookUpdateRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\User;
@@ -59,8 +59,9 @@ class BookController extends Controller
         return view('book.show', compact('book'));
     }
 
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(BookStoreRequest $request): RedirectResponse
     {
+        try{
             $data = $request->validated();
 
             $authors = $data['authors'];
@@ -69,13 +70,17 @@ class BookController extends Controller
             $book = Book::query()->create($data);
             $book->authors()->attach($authors);
             return redirect()->route('book.index');
+            }
+        catch (\Exception $e) {
+            Log::error('Ошибка при добавлении книги: ' . $e->getMessage());
+            return back()->with(['error' => 'Не удалось добавить книгу. Попробуйте снова.']);
+        }
     }
 
-    public function update(UpdateRequest $request, Book $book): RedirectResponse
+    public function update(BookUpdateRequest $request, Book $book): RedirectResponse
     {
         try{
             $data = $request->validated();
-
             $authors = $data['authors'];
             unset($data['authors']);
 
@@ -84,7 +89,7 @@ class BookController extends Controller
             return redirect()->route('book.index', $book->id);
         }
         catch (\Exception $e) {
-            Log::error('Ошибка при обновлении пользователя: ' . $e->getMessage());
+            Log::error('Ошибка при обновлении книги: ' . $e->getMessage());
             return back()->with(['error' => 'Не удалось обновить книгу. Попробуйте снова.']);
         }
     }
