@@ -23,9 +23,11 @@
                 <div>{{$user->email}}</div>
             </div>
         </div>
+
         <div>
             <a href="{{route('users.edit', $user->id)}}">Редактировать</a>
         </div>
+
         <div class="m-3 p-1">
             <h2 style="font-size: 28px">Книги пользователя</h2>
             <div class="table">
@@ -124,7 +126,6 @@
                     @endif
                 </div>
             </div>
-
 
             <div class="m-4">
                 <form action="{{route('users.destroy', $user->id)}}" method="post"

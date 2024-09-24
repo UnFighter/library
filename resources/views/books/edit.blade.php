@@ -22,12 +22,14 @@
                     <div class="alert alert-danger">{{ "Поле не должно быть пустым" }}</div>
                     @enderror
                 </div>
+
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Описание</label>
                     <label for="description"></label><input type="text" name="description" class="form-control"
                                                             id="description" placeholder="Description"
                                                             value="{{$book->description}}">
                 </div>
+
                 <div class="form-group">
                     <label for="author">Авторы</label>
                     <select multiple class="form-control" id="author" name="authors[]">
@@ -39,6 +41,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Количество</label>
                     <label for="amount"></label><input type="text" name="amount" class="form-control" id="amount"

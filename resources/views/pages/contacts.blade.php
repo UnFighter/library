@@ -5,6 +5,7 @@
             <div class="about_text_name">
                 <h1>Контакты</h1>
             </div>
+
             <article>
                 <div class="about_text">
                     <p>Номер телефона: +7 (812) 210 20 83</p>
@@ -17,6 +18,7 @@
             <div class="about_text_name">
                 <h2>Адрес:</h2>
             </div>
+
             <div class="about_text_location">
                 <div class="location">
                     <div style="position:relative;overflow:hidden;"><a
@@ -31,6 +33,7 @@
                             style="position:relative;"></iframe>
                     </div>
                 </div>
+
                 <div>
                     <br>
                     <p>192012, Санкт-Петербург, пр. Обуховской обороны 271, БЦ ОБУХОВ-ЦЕНТР оф. 1001</p>
@@ -50,14 +53,17 @@
                         Бесплатно по России:
                         <a href="tel:+78122102218"> +7 (800) 333-10-75</a>
                     </div>
+
                     <div class="footer_time">
                         <p>График работы офиса: с 9:00 до 19:00</p>
                     </div>
+
                     <div class="footer_mail">
                         E-mail:
                         <a href="mailto:sales@stream-telecom.ru">sales@stream-telecom.ru</a>
                     </div>
                 </div>
+
                 <div class="footer_name">
                     <p>&copy Северо-Западная Компания "Инфосвязь" 2008-2023</p>
                 </div>
