@@ -24,7 +24,7 @@ class UserUpdateRequest extends FormRequest
     {
         $user = $this->route('user');
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|max:100',
             'email' => ['required', 'email', 'unique:users,email,' . $user->id],
         ];
     }
@@ -34,6 +34,7 @@ class UserUpdateRequest extends FormRequest
      return[
          'name.required' => 'Поле "Имя" обязательно для заполнения.',
          'name.string' => 'Поле "Имя" должно быть строкой.',
+         'name.max' => 'Поле "Имя" должно быть меньше 100 символов',
          'email.required' => 'Поле "Email" обязательно для заполнения.',
          'email.email' => 'Поле "Email" должно содержать действительный адрес электронной почты.',
          'email.rfc' => 'Неправильно введена почта в поле "Email"',

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +13,9 @@ class User extends Model
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
-    protected $guarded = []; // Здесь необходимо будет указать атрибуты!!!
+
+    public $table = 'users';
+    protected $fillable = ['name', 'email'];
 
     public function books(): BelongsToMany
     {

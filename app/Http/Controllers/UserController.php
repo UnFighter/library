@@ -29,12 +29,12 @@ class UserController extends Controller
             $users = User::paginate($this->perPage);
         }
 
-        return view('user.index', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     public function edit(User $user): Factory|View|Application
     {
-        return view('user.edit', compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     public function show(Request $request, User $user): Factory|View|Application
@@ -52,17 +52,16 @@ class UserController extends Controller
         } else {
             $books = collect();
         }
-        return view('user.show', compact('user','books', 'search'));
+        return view('users.show', compact('user', 'books', 'search'));
     }
 
     public function store(UserStoreRequest $request): RedirectResponse
     {
-        try{
+        try {
             $data = $request->validated();
             User::query()->create($data);
-            return redirect()->route('user.index');
-        }
-        catch (\Exception $e) {
+            return redirect()->route('users.index');
+        } catch (\Exception $e) {
             Log::error('Ошибка при добавлении пользователя: ' . $e->getMessage());
             return back()->with(['error' => 'Не удалось добавить пользователя. Попробуйте снова.']);
         }
@@ -70,26 +69,25 @@ class UserController extends Controller
 
     public function create(User $user): Factory|View|Application
     {
-        return view('user.create', compact('user'));
+        return view('users.create', compact('user'));
     }
 
     public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
-        try{
+        try {
             $data = $request->validated();
             $user->update($data);
-            return redirect()->route('user.index');
-        }
-        catch (\Exception $e) {
-        Log::error('Ошибка при обновлении пользователя: ' . $e->getMessage());
-        return back()->with(['error' => 'Не удалось обновить пользователя. Попробуйте снова.']);
+            return redirect()->route('users.index');
+        } catch (\Exception $e) {
+            Log::error('Ошибка при обновлении пользователя: ' . $e->getMessage());
+            return back()->with(['error' => 'Не удалось обновить пользователя. Попробуйте снова.']);
         }
     }
 
-    public function destroyUser(User $user): RedirectResponse
+    public function destroy(User $user): RedirectResponse
     {
         $user->books()->detach();
         $user->delete();
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
     }
 }

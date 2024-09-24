@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title')
     <div class="container">
-{{--        @if ($errors->any())
+        @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -9,13 +9,8 @@
                     @endforeach
                 </ul>
             </div>
-        @endif--}}
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
         @endif
-        <form action="{{route('book.update', $book->id)}}" method="post">
+        <form action="{{route('books.update', $book->id)}}" method="post">
             @csrf
             @method('patch')
             <div>

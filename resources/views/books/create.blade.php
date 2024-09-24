@@ -10,12 +10,7 @@
                 </ul>
             </div>
         @endif
-{{--        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif--}}
-        <form action="{{route('book.store', $book->id)}}" method="post">
+        <form action="{{route('books.store', $book->id)}}" method="post">
             @csrf
             <div>
                 <div class="mb-3">

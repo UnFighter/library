@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Author extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+
+    public $table = 'authors';
+    protected $fillable = ['name'];
 
     public function books(): BelongsToMany
     {

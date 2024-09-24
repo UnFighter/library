@@ -29,16 +29,16 @@
                         <a href="{{route('contact.index')}}" class="nav-link">Контакты</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('book.index')}}" class="nav-link">Библиотека</a>
+                        <a href="{{route('books.index')}}" class="nav-link">Библиотека</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('book.create')}}" class="nav-link">Создать книгу</a>
+                        <a href="{{route('books.create')}}" class="nav-link">Создать книгу</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('user.index')}}" class="nav-link">Пользователи</a>
+                        <a href="{{route('users.index')}}" class="nav-link">Пользователи</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('user.create')}}" class="nav-link">Создать пользователя</a>
+                        <a href="{{route('users.create')}}" class="nav-link">Создать пользователя</a>
                     </li>
                 </ul>
             </div>

@@ -12,16 +12,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int $amount
  * @property int $id
  */
-
 class Book extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+
+    public $table = 'books';
+    protected $fillable = ['title', 'description', 'amount'];
 
     public function authors(): BelongsToMany
     {
         return $this->belongsToMany(Author::class);
     }
+
     public function user(): BelongsToMany
     {
         return $this->belongsToMany(User::class);

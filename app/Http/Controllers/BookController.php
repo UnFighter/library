@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Log;
 
 class BookController extends Controller
 {
-    protected int $perPage = 10; // Пагинация
+    protected int $perPage = 10;
 
     public function index(Request $request): Factory|View|Application
     {
@@ -30,13 +30,13 @@ class BookController extends Controller
         } else {
             $books = Book::paginate($this->perPage);
         }
-        return view('book.index', compact('books'));
+        return view('books.index', compact('books'));
     }
 
     public function create(Book $book): Factory|View|Application
     {
         $authors = Author::all();
-        return view('book.create', compact('book', 'authors'));
+        return view('books.create', compact('book', 'authors'));
     }
 
     public function destroy(Book $book): RedirectResponse
@@ -44,24 +44,24 @@ class BookController extends Controller
         $book->authors()->detach();
         $book->user()->detach();
         $book->delete();
-        return redirect()->route('book.index');
+        return redirect()->route('books.index');
     }
 
     public function edit(Book $book): Factory|View|Application
     {
         $authors = Author::all();
-        return view('book.edit', compact('book', 'authors'));
+        return view('books.edit', compact('book', 'authors'));
     }
 
     public function show(Book $book): Factory|View|Application
     {
         $book->load('authors');
-        return view('book.show', compact('book'));
+        return view('books.show', compact('book'));
     }
 
     public function store(BookStoreRequest $request): RedirectResponse
     {
-        try{
+        try {
             $data = $request->validated();
 
             $authors = $data['authors'];
@@ -69,9 +69,8 @@ class BookController extends Controller
 
             $book = Book::query()->create($data);
             $book->authors()->attach($authors);
-            return redirect()->route('book.index');
-            }
-        catch (\Exception $e) {
+            return redirect()->route('books.index');
+        } catch (\Exception $e) {
             Log::error('Ошибка при добавлении книги: ' . $e->getMessage());
             return back()->with(['error' => 'Не удалось добавить книгу. Попробуйте снова.']);
         }
@@ -79,29 +78,27 @@ class BookController extends Controller
 
     public function update(BookUpdateRequest $request, Book $book): RedirectResponse
     {
-        try{
+        try {
             $data = $request->validated();
             $authors = $data['authors'];
             unset($data['authors']);
 
             $book->update($data);
             $book->authors()->sync($authors);
-            return redirect()->route('book.index', $book->id);
-        }
-        catch (\Exception $e) {
+            return redirect()->route('books.index', $book->id);
+        } catch (\Exception $e) {
             Log::error('Ошибка при обновлении книги: ' . $e->getMessage());
             return back()->with(['error' => 'Не удалось обновить книгу. Попробуйте снова.']);
         }
     }
 
-    public function createBookUserConnection(User $user, Book $book): RedirectResponse
+    public function createBookUserLink(User $user, Book $book): RedirectResponse
     {
         $currentAmount = $book->amount;
         $currentBookId = $book->id;
         if ($currentAmount <= 0) {
             return redirect()->back()->withErrors(['amount' => 'Недостаточно книг']);
-        }
-        elseif ($user->books()->where('book_id', $currentBookId)->exists()) {
+        } elseif ($user->books()->where('book_id', $currentBookId)->exists()) {
             return redirect()->back()->withErrors(['amount' => 'У пользователя уже есть такая книга']);
         }
         $user->books()->attach($book);
@@ -109,7 +106,7 @@ class BookController extends Controller
         return redirect()->back();
     }
 
-    public function destroyBookUserConnection(User $user, Book $book): RedirectResponse
+    public function destroyBookUserLink(User $user, Book $book): RedirectResponse
     {
         $user->books()->detach($book);
         $book->increment('amount', 1);

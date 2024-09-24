@@ -16,7 +16,7 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|max:100',
             'email' => ['required','email:rfc', Rule::unique('users')->withoutTrashed()],
         ];
     }
@@ -25,6 +25,7 @@ class UserStoreRequest extends FormRequest
         return [
             'name.required' => 'Поле "Имя" обязательно для заполнения.',
             'name.string' => 'Поле "Имя" должно быть строкой.',
+            'name.max' => 'Поле "Имя" должно быть меньше 100 символов',
             'email.required' => 'Поле "Email" обязательно для заполнения.',
             'email.email' => 'Поле "Email" должно содержать действительный адрес электронной почты.',
             'email.rfc' => 'Неправильно введена почта в поле "Email"',

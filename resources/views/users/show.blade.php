@@ -24,7 +24,7 @@
             </div>
         </div>
         <div>
-            <a href="{{route('user.edit', $user->id)}}">Редактировать</a>
+            <a href="{{route('users.edit', $user->id)}}">Редактировать</a>
         </div>
         <div class="m-3 p-1">
             <h2 style="font-size: 28px">Книги пользователя</h2>
@@ -53,7 +53,7 @@
                             <td>
                                 <div class="m4">
                                     <form
-                                        action="{{ route('user.destroyConnection', ['user' => $user->id, 'book' => $book->id]) }}"
+                                        action="{{ route('usersDestroyLink', ['user' => $user->id, 'book' => $book->id]) }}"
                                         method="post">
                                         @csrf
                                         @method('DELETE')
@@ -69,7 +69,7 @@
 
             <div>
                 <h1 style="font-size: 28px">Выдать книгу</h1>
-                <form action="{{ route('user.show', ['user' => $user->id]) }}" method="GET" class="form-inline">
+                <form action="{{ route('users.show', ['user' => $user->id]) }}" method="GET" class="form-inline">
                     <input class="form-control mr-sm-2" type="search" name="search" placeholder="Поиск"
                            aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
@@ -92,7 +92,7 @@
                                 @foreach($books as $book)
                                     <tr>
                                         <td>{{ $book->id }}</td>
-                                        <td><a href="{{ route('book.show', $book->id) }}">{{ $book->title }}</a></td>
+                                        <td><a href="{{ route('books.show', $book->id) }}">{{ $book->title }}</a></td>
                                         <td>
                                             @foreach($book->authors as $author)
                                                 {{ $author->name }}{{ !$loop->last ? ', ' : '' }}
@@ -102,7 +102,7 @@
                                         <td>
                                             <div class="m4">
                                                 <form
-                                                    action="{{ route('user.createConnection', ['user' => $user->id, 'book' => $book->id]) }}"
+                                                    action="{{ route('usersCreateLink', ['user' => $user->id, 'book' => $book->id]) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('POST')
@@ -127,7 +127,7 @@
 
 
             <div class="m-4">
-                <form action="{{route('user.destroy', $user->id)}}" method="post"
+                <form action="{{route('users.destroy', $user->id)}}" method="post"
                       onsubmit="return confirm('Вы уверены, что хотите удалить этого пользователя?');">
                     @csrf
                     @method('delete')
