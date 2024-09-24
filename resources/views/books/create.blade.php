@@ -10,7 +10,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{route('books.store', $book->id)}}" method="post">
+        <form action="{{route('books.store')}}" method="post">
             @csrf
             <div>
                 <div class="mb-3">
@@ -37,7 +37,7 @@
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Количество</label>
                     <label for="amount"></label><input type="text" name="amount" class="form-control" id="amount"
-                                                       placeholder="Amount" value="{{$book->amount}}">
+                                                       placeholder="Amount">
                 </div>
 
                 <div class="mb-3">

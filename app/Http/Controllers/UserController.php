@@ -60,16 +60,16 @@ class UserController extends Controller
         try {
             $data = $request->validated();
             User::query()->create($data);
-            return redirect()->route('users.index');
         } catch (\Exception $e) {
             Log::error('Ошибка при добавлении пользователя: ' . $e->getMessage());
             return back()->with(['error' => 'Не удалось добавить пользователя. Попробуйте снова.']);
         }
+        return redirect()->route('users.index');
     }
 
     public function create(User $user): Factory|View|Application
     {
-        return view('users.create', compact('user'));
+        return view('users.create');
     }
 
     public function update(UserUpdateRequest $request, User $user): RedirectResponse
@@ -77,11 +77,11 @@ class UserController extends Controller
         try {
             $data = $request->validated();
             $user->update($data);
-            return redirect()->route('users.index');
         } catch (\Exception $e) {
             Log::error('Ошибка при обновлении пользователя: ' . $e->getMessage());
             return back()->with(['error' => 'Не удалось обновить пользователя. Попробуйте снова.']);
         }
+        return redirect()->route('users.index');
     }
 
     public function destroy(User $user): RedirectResponse

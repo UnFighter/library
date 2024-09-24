@@ -33,10 +33,10 @@ class BookController extends Controller
         return view('books.index', compact('books'));
     }
 
-    public function create(Book $book): Factory|View|Application
+    public function create(): Factory|View|Application
     {
         $authors = Author::all();
-        return view('books.create', compact('book', 'authors'));
+        return view('books.create', compact( 'authors'));
     }
 
     public function destroy(Book $book): RedirectResponse
@@ -63,17 +63,16 @@ class BookController extends Controller
     {
         try {
             $data = $request->validated();
-
             $authors = $data['authors'];
             unset($data['authors']);
 
             $book = Book::query()->create($data);
             $book->authors()->attach($authors);
-            return redirect()->route('books.index');
         } catch (\Exception $e) {
             Log::error('Ошибка при добавлении книги: ' . $e->getMessage());
             return back()->with(['error' => 'Не удалось добавить книгу. Попробуйте снова.']);
         }
+        return redirect()->route('books.index');
     }
 
     public function update(BookUpdateRequest $request, Book $book): RedirectResponse
@@ -85,11 +84,12 @@ class BookController extends Controller
 
             $book->update($data);
             $book->authors()->sync($authors);
-            return redirect()->route('books.index', $book->id);
+
         } catch (\Exception $e) {
             Log::error('Ошибка при обновлении книги: ' . $e->getMessage());
             return back()->with(['error' => 'Не удалось обновить книгу. Попробуйте снова.']);
         }
+        return redirect()->route('books.index', $book->id);
     }
 
     public function createBookUserLink(User $user, Book $book): RedirectResponse
