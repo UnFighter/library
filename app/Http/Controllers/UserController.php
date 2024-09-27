@@ -67,7 +67,7 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function create(User $user): Factory|View|Application
+    public function create(): Factory|View|Application
     {
         return view('users.create');
     }
